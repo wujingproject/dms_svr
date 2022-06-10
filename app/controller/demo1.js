@@ -11,22 +11,22 @@ class Demo1 extends Controller {
   async upsert() {
     const { ctx, service } = this;
 
-    const createRule = {
-      title: { type: 'string' },
-      content: { type: 'string' },
-    };
+    // const createRule = {
+    //   title: { type: 'string' },
+    //   content: { type: 'string' },
+    // };
 
     // 校验和组装参数
-    ctx.validate(createRule);
-    const data = Object.assign(ctx.request.body, { author: ctx.session.userId });
+    // ctx.validate(createRule);
+    // const data = Object.assign(ctx.request.body, { author: ctx.session.userId });
 
     // const userInfo = await ctx.service.Demo1.find(1);
 
     // 调用 Service 进行业务处理
-    const res = await service.post.create(data);
+    // const res = await service.post.create(data);
     // 响应客户端数据
-    ctx.body = { id: res.id };
-    ctx.status = 201;
+    ctx.body = "hahaahhaah";
+    // ctx.status = 201;
   }
 }
 
