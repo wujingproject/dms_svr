@@ -16,7 +16,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1654773116365_3311';
 
   // add your middleware config here
-  config.middleware = [ 'slow' ];
+  // config.middleware = [ 'slow' ];
 
   // slow 中间件的 options 参数
   // slow = {
