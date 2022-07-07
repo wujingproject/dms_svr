@@ -37,6 +37,20 @@ module.exports = appInfo => {
     agent: false,
   };
 
+  // 取消安全证书验证，不设置好像默认是不验证，所以先屏蔽，待后续学习深究
+  // config.security = {
+  //   csrf: {
+  //     enable: false,
+  //   },
+  //   domainWhiteList: ["http://localhost:8000"], // 白名单，可以填*号
+  // }
+
+  config.cors = {
+    origin: 'http://localhost:8000',
+    credentials: true,
+    allowMethods: "GET,HEAD,PUT,POST,DELETE,PATCH, OPTIONS",
+  }
+
   return {
     ...config,
     ...userConfig,

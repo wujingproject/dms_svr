@@ -3,12 +3,12 @@
 const Controller = require('egg').Controller;
 
 class Demo1Controller extends Controller {
-  async index() {
+  async getList() {
     const { ctx } = this;
 
     // ctx.body = 'hi, test111111111111111111111111111111';
 
-    let users = await ctx.service.demo1.getUserById(1);
+    let users = await ctx.service.demo1.getUserById();
     ctx.body = users;
   }
 }
