@@ -16,7 +16,12 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1657010032226_4370';
 
   // add your middleware config here
-  config.middleware = [];
+  // 加载 errorHandler 中间件
+  config.middleware = ['errorHandler'];
+  // 只对 /api 前缀的 url 路径生效
+  // config.errorHandler = {
+  //   match: '/api',
+  // };
 
   // add your user config here
   const userConfig = {
@@ -37,13 +42,13 @@ module.exports = appInfo => {
     agent: false,
   };
 
-  // 取消安全证书验证，不设置好像默认是不验证，所以先屏蔽，待后续学习深究
-  // config.security = {
-  //   csrf: {
-  //     enable: false,
-  //   },
-  //   domainWhiteList: ["http://localhost:8000"], // 白名单，可以填*号
-  // }
+  // 取消安全证书验证，不设置默认是不验证，post请求会报错，所以在此配置
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+    domainWhiteList: ["http://localhost:8000"], // 白名单，可以填*号
+  }
 
   config.cors = {
     origin: 'http://localhost:8000',

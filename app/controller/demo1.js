@@ -13,8 +13,32 @@ class Demo1Controller extends Controller {
       // limit: 10, // 返回数据量
       // offset: 0, // 数据偏移量
     }
-    let users = await ctx.service.demo1.getList(param);
-    ctx.body = users;
+    let result = await ctx.service.demo1.getList(param);
+    ctx.body = result;
+  }
+
+  async create() {
+    const { ctx } = this;
+    // 参数校验
+    try {
+      ctx.validate({
+        name: { type: 'string', required: true, desc: '姓名' },
+        age: { type: 'integer', required: false, min: 1, max: 1000, desc: '年龄' },
+        address: { type: 'string', required: false, desc: '地址' },
+        imgs: { type: 'string', required: true, desc: '图片组' }
+      });
+    } catch (err) {
+      ctx.body = ctx.paramErrors;
+      console.log('222222222222222222222222222222222222222222222222222222222222222222');
+      console.log(err);
+      return;
+    }
+    // 插入数据库
+    const data = ctx.query;
+    console.log('11111111111111111111111111111111111111111111111111111');
+    console.log(data);
+    // let result = await ctx.service.demo1.create(data);
+    // ctx.body = result;
   }
 }
 

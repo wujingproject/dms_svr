@@ -10,7 +10,9 @@
     "egg": "^2",
     "egg-cors": "^2.2.3",
     "egg-mysql": "^3.1.1",
-    "egg-scripts": "^2"
+    "egg-scripts": "^2",
+    "egg-validate": "^2.0.2",
+    "egg-valparams": "^1.4.5"
   },
   "devDependencies": {
     "autod": "^3",

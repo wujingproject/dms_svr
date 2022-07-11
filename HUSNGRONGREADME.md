@@ -1,3 +1,7 @@
+# 学习文档
+
+https://www.eggjs.org/zh-CN/tutorials
+
 # 创建初始化项目步骤
 
 npm init egg --type=simple
@@ -54,3 +58,7 @@ Project.findAll({
         }
     }
 })
+
+# 创建数据时的参数校验
+
+安装valparams：npm i egg-valparams --save
