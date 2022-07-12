@@ -5,7 +5,7 @@ const Controller = require('egg').Controller;
 class Demo1Controller extends Controller {
   async getList() {
     const { ctx } = this;
-    const data = ctx.query; // condition
+    const data = ctx.request.body; // condition
     let param = { // 搜索 post 表
       // where: { title: 'Hello World', age: [10, 11] }, // WHERE 条件
       // columns: ['title'], // 要查询的表字段
@@ -14,7 +14,8 @@ class Demo1Controller extends Controller {
       // offset: 0, // 数据偏移量
     }
     let result = await ctx.service.demo1.getList(param);
-    ctx.body = result;
+    const res = { data: result, status: 200 };
+    ctx.body = res;
   }
 
   async create() {
@@ -25,20 +26,17 @@ class Demo1Controller extends Controller {
         name: { type: 'string', required: true, desc: '姓名' },
         age: { type: 'integer', required: false, min: 1, max: 1000, desc: '年龄' },
         address: { type: 'string', required: false, desc: '地址' },
-        imgs: { type: 'string', required: true, desc: '图片组' }
+        imgs: { type: 'string', required: false, desc: '图片组' }
       });
     } catch (err) {
-      ctx.body = ctx.paramErrors;
-      console.log('222222222222222222222222222222222222222222222222222222222222222222');
-      console.log(err);
+      ctx.logger.error('Demo1Controller.create params err', err);
+      ctx.body = { status: 0, message: '参数校验失败' };
       return;
     }
     // 插入数据库
-    const data = ctx.query;
-    console.log('11111111111111111111111111111111111111111111111111111');
-    console.log(data);
-    // let result = await ctx.service.demo1.create(data);
-    // ctx.body = result;
+    const data = ctx.request.body;
+    let result = await ctx.service.demo1.create(data);
+    ctx.body = { data: { id: result.insertId }, status: 200 };
   }
 }
 
