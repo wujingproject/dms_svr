@@ -62,3 +62,4 @@ Project.findAll({
 # 创建数据时的参数校验
 
 安装valparams：npm i egg-valparams --save
+npm i egg-validate --save
