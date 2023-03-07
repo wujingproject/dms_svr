@@ -40,9 +40,17 @@ class Demo1Controller extends Controller {
             ctx.body = { status: 0, message: '参数校验失败' };
             return;
         }
-        // 插入数据库
+
         const data = ctx.request.body;
-        let result = await ctx.service.demo1.create(data);
+        let result = null;
+        if (!data.id) {
+            // 插入新数据到数据库
+            result = await ctx.service.demo1.create(data);
+        } else {
+            // 修改数据库数据
+            result = await ctx.service.demo1.update(data);
+            console.log('99999999999999999999999999999999999999999999999', result);
+        }
         ctx.body = { status: 200, data: { id: result.insertId }, message: '操作成功' };
     }
 }
